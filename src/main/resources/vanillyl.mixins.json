@@ -6,6 +6,7 @@
     "AnimalEntityMixin",
     "CowEntityMixin",
     "ExampleMixin",
+    "LivingEntityMixin",
     "MixinArmorMaterials",
     "MixinToolMaterials",
     "RabbitEntityMixin"
