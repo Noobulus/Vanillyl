@@ -1,18 +1,24 @@
 package mod.noobulus.mixin;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.passive.*;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(RabbitEntity.class)
+@Mixin(value = RabbitEntity.class, priority = 800)
 public abstract class RabbitEntityMixin extends AnimalEntity {
 
     public RabbitEntityMixin(EntityType<? extends RabbitEntity> entityType, World world) {
@@ -45,8 +51,19 @@ public abstract class RabbitEntityMixin extends AnimalEntity {
     }
 
     @Inject(method = "initGoals()V", at = @At("TAIL"))
-    private void fleeFromFoxesAndCats(CallbackInfo ci) {
+    private void fleeFromFoxesAndCatsAndTemptWithCarrotOnAStick(CallbackInfo ci) {
         ((RabbitEntity) (Object) this).goalSelector.add(4, new RabbitEntity.FleeGoal<>(((RabbitEntity) (Object) this), FoxEntity.class, 10.0F, 3.3, 3.3));
         ((RabbitEntity) (Object) this).goalSelector.add(4, new RabbitEntity.FleeGoal<>(((RabbitEntity) (Object) this), CatEntity.class, 10.0F, 3.3, 3.3));
+        ((RabbitEntity) (Object) this).goalSelector.add(3, new TemptGoal(this, 1.2, Ingredient.ofItems(new ItemConvertible[]{Items.CARROT_ON_A_STICK}), false));
+    }
+
+    @Inject(method = "isBreedingItem(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
+    public void rabbitsBredWithTag(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(stack.isIn(TagKey.of(RegistryKeys.ITEM, new Identifier("vanillyl", "rabbit_breeding_items"))));
+    }
+
+    @ModifyArg(method = "initGoals()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 4), index = 1)
+    private Goal rabbitsTemptedByTag(Goal goal) {
+        return new TemptGoal(this, 1.25, Ingredient.fromTag(TagKey.of(RegistryKeys.ITEM, new Identifier("vanillyl", "rabbit_breeding_items"))), false);
     }
 }

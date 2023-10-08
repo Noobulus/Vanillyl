@@ -3,13 +3,19 @@
   "package": "mod.noobulus.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AbstractHorseEntityMixin",
     "AnimalEntityMixin",
+    "ChickenEntityMixin",
     "CowEntityMixin",
     "ExampleMixin",
     "LivingEntityMixin",
+    "LlamaEntityMixin",
     "MixinArmorMaterials",
     "MixinToolMaterials",
-    "RabbitEntityMixin"
+    "ParrotEntityMixin",
+    "PigEntityMixin",
+    "RabbitEntityMixin",
+    "SheepEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

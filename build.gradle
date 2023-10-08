@@ -21,6 +21,9 @@ repositories {
 			includeGroup "com.jamieswhiteshirt"
 		}
 	}
+	maven {
+		url "https://api.modrinth.com/maven"
+	}
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -43,6 +46,7 @@ dependencies {
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${reach_entity_attributes_version}")
+	modImplementation("maven.modrinth:farmers-delight-fabric:${farmers_delight_version}")
 }
 
 processResources {

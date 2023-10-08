@@ -1,0 +1,8 @@
+{
+  "values": [
+    {"id":"farmersdelight:carrot_crate","required":false},
+    {"id":"farmersdelight:potato_crate","required":false},
+    {"id":"farmersdelight:beetroot_crate","required":false},
+    {"id":"farmersdelight:onion_crate","required":false}
+  ]
+}
