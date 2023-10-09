@@ -1,5 +1,6 @@
 package mod.noobulus.mixin;
 
+import mod.noobulus.VanillylTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.TemptGoal;
@@ -23,6 +24,6 @@ public abstract class SheepEntityMixin extends AnimalEntity {
 
     @ModifyArg(method = "initGoals()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 3), index = 1)
     private Goal cowsTemptedByTag(Goal goal) {
-        return new TemptGoal(this, 1.25, Ingredient.fromTag(TagKey.of(RegistryKeys.ITEM, new Identifier("vanillyl", "generic_breeding_items"))), false);
+        return new TemptGoal(this, 1.25, Ingredient.fromTag(VanillylTags.GENERIC_BREEDING_ITEMS), false);
     }
 }

@@ -1,0 +1,8 @@
+{
+  "values": [
+    "minecraft:apple",
+    "minecraft:carrot",
+    "minecraft:melon_slice",
+    {"id":"farmersdelight:pumpkin_slice","required":false}
+  ]
+}

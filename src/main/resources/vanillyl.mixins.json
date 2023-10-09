@@ -7,7 +7,6 @@
     "AnimalEntityMixin",
     "ChickenEntityMixin",
     "CowEntityMixin",
-    "ExampleMixin",
     "LivingEntityMixin",
     "LlamaEntityMixin",
     "MixinArmorMaterials",

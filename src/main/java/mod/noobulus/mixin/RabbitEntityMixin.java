@@ -1,5 +1,6 @@
 package mod.noobulus.mixin;
 
+import mod.noobulus.VanillylTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.TemptGoal;
@@ -8,9 +9,6 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
@@ -59,11 +57,11 @@ public abstract class RabbitEntityMixin extends AnimalEntity {
 
     @Inject(method = "isBreedingItem(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
     public void rabbitsBredWithTag(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(stack.isIn(TagKey.of(RegistryKeys.ITEM, new Identifier("vanillyl", "rabbit_breeding_items"))));
+        cir.setReturnValue(stack.isIn(VanillylTags.RABBIT_BREEDING_ITEMS));
     }
 
     @ModifyArg(method = "initGoals()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 4), index = 1)
     private Goal rabbitsTemptedByTag(Goal goal) {
-        return new TemptGoal(this, 1.25, Ingredient.fromTag(TagKey.of(RegistryKeys.ITEM, new Identifier("vanillyl", "rabbit_breeding_items"))), false);
+        return new TemptGoal(this, 1.25, Ingredient.fromTag(VanillylTags.GENERIC_BREEDING_ITEMS), false);
     }
 }

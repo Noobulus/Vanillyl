@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:sugar",
+    "minecraft:wheat",
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    {"id":"supplementaries:flax","required":false},
+    {"id":"supplementaries:candy","required":false},
+    {"id":"spelunkery:salt","required":false}
+  ]
+}

@@ -5,9 +5,6 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.item.v1.ModifyItemAttributeModifiersCallback;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +28,7 @@ public class Vanillyl implements ModInitializer {
 		LOGGER.info("Thanks for playing Vanilla Extract!");
 
 		ModifyItemAttributeModifiersCallback.EVENT.register((stack, slot, attributeModifiers) -> {
-			if (stack.isIn(TagKey.of(RegistryKeys.ITEM, new Identifier("vanillyl", "netherite_tools"))) && slot.getName().equals("mainhand")) {
+			if (stack.isIn(VanillylTags.NETHERITE_TOOLS)) {
 				attributeModifiers.put(ReachEntityAttributes.REACH, new EntityAttributeModifier(REACH_MODIFIER_ID, "Tool modifier", 2.0, EntityAttributeModifier.Operation.ADDITION));
 				attributeModifiers.put(ReachEntityAttributes.ATTACK_RANGE, new EntityAttributeModifier(ATTACK_RANGE_MODIFIER_ID, "Tool modifier", 2.0, EntityAttributeModifier.Operation.ADDITION));
 			}

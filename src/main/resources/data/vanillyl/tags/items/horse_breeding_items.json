@@ -1,0 +1,6 @@
+{
+  "values": [
+    "minecraft:hay_block",
+    {"id":"supplementaries:flax_block","required":false}
+  ]
+}
