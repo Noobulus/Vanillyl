@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"mod.noobulus.Vanillyl"
+		],
+		"emi": [
+			"mod.noobulus.emi.VanillylEmiPlugin"
 		]
 	},
 	"mixins": [

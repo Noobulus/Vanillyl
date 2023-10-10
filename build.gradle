@@ -15,13 +15,17 @@ base {
 }
 
 repositories {
-	maven {
+	maven { // reach entity attributes
 		url "https://maven.jamieswhiteshirt.com/libs-release"
 		content {
 			includeGroup "com.jamieswhiteshirt"
 		}
 	}
-	maven {
+	maven { // EMI
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
+	}
+	maven { // FD & extras
 		url "https://api.modrinth.com/maven"
 	}
 	// Add repositories to retrieve artifacts from in here.
@@ -47,6 +51,8 @@ dependencies {
 
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${reach_entity_attributes_version}")
 	modImplementation("maven.modrinth:farmers-delight-fabric:${farmers_delight_version}")
+	modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+	modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 }
 
 processResources {
