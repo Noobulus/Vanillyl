@@ -5,6 +5,8 @@
   "mixins": [
     "AbstractHorseEntityMixin",
     "AnimalEntityMixin",
+    "BrewingStandBlockEntityMixin",
+    "BrewingStandScreenHandlerMixin",
     "ChickenEntityMixin",
     "CowEntityMixin",
     "FireworkRocketRecipeMixin",
