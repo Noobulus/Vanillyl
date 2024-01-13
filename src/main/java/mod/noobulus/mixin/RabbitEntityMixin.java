@@ -40,7 +40,7 @@ public abstract class RabbitEntityMixin extends AnimalEntity {
 
     @Intrinsic @Override
     protected int computeFallDamage(float fallDistance, float damageMultiplier) {
-        return super.computeFallDamage(fallDistance, damageMultiplier) - 5;
+        return super.computeFallDamage(fallDistance, damageMultiplier);
     }
 
     @Inject(method = "Lnet/minecraft/entity/passive/RabbitEntity;computeFallDamage(FF)I", at = @At("RETURN"), cancellable = true)

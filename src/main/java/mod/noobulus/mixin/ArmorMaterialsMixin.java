@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import java.util.EnumMap;
 
 @Mixin(value = ArmorMaterials.class, priority = 800)
-public class MixinArmorMaterials {
+public class ArmorMaterialsMixin {
     /* <init> params
     0 ??? string
     1 ??? i

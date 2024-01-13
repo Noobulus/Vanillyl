@@ -1,6 +1,7 @@
 package mod.noobulus.mixin;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BrewingStandBlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = net.minecraft.block.entity.BrewingStandBlockEntity.class, priority = 800)
+@Mixin(value = BrewingStandBlockEntity.class, priority = 800)
 public class BrewingStandBlockEntityMixin {
 
     @Redirect(method = "tick(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/block/entity/BrewingStandBlockEntity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 0))

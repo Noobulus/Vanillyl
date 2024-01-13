@@ -10,6 +10,8 @@ import net.minecraft.util.Identifier;
 public class VanillylTags {
 
     public static final TagKey<Item> NETHERITE_TOOLS;
+    public static final TagKey<Item> LEATHER_ARMOR;
+    public static final TagKey<Item> NETHERITE_ARMOR;
     public static final TagKey<Item> GENERIC_BREEDING_ITEMS;
     public static final TagKey<Item> CHICKEN_BREEDING_ITEMS;
     public static final TagKey<Item> HORSE_BREEDING_ITEMS;
@@ -32,6 +34,8 @@ public class VanillylTags {
 
     static {
         NETHERITE_TOOLS = create("netherite_tools", RegistryKeys.ITEM);
+        LEATHER_ARMOR = create("leather_armor", RegistryKeys.ITEM);
+        NETHERITE_ARMOR = create("netherite_armor", RegistryKeys.ITEM);
         GENERIC_BREEDING_ITEMS = create("generic_breeding_items", RegistryKeys.ITEM);
         CHICKEN_BREEDING_ITEMS = create("chicken_breeding_items", RegistryKeys.ITEM);
         HORSE_BREEDING_ITEMS = create("horse_breeding_items", RegistryKeys.ITEM);

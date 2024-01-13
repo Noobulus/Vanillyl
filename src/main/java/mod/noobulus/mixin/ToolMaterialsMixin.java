@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(value = ToolMaterials.class, priority = 800)
-public class MixinToolMaterials {
+public class ToolMaterialsMixin {
     /* <init> params
     0 ??? string
     1 ??? i

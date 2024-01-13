@@ -5,20 +5,22 @@
   "mixins": [
     "AbstractHorseEntityMixin",
     "AnimalEntityMixin",
+    "ArmorMaterialsMixin",
     "BrewingStandBlockEntityMixin",
     "BrewingStandScreenHandlerMixin",
     "ChickenEntityMixin",
+    "CookingPotRecipeSerializerMixin",
     "CowEntityMixin",
     "FireworkRocketRecipeMixin",
     "FireworkStarRecipeMixin",
+    "ItemMixin",
     "LivingEntityMixin",
     "LlamaEntityMixin",
-    "MixinArmorMaterials",
-    "MixinToolMaterials",
     "ParrotEntityMixin",
     "PigEntityMixin",
     "RabbitEntityMixin",
-    "SheepEntityMixin"
+    "SheepEntityMixin",
+    "ToolMaterialsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
