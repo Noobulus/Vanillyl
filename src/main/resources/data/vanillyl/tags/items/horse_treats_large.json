@@ -1,6 +1,6 @@
 {
   "values": [
-    "minecraft:golder_apple",
+    "minecraft:golden_apple",
     "minecraft:golden_carrot",
     "minecraft:glistering_melon_slice",
     {"id":"supplementaries:sugar_cube","required":false}

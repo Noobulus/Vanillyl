@@ -36,33 +36,32 @@ public class ArmorMaterialsMixin {
      */
 
     @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 0))
-    private static void buffLeather(Args args) {
-        args.set(7, 1.0F); // add toughness
-    }
-
-    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 1))
-    private static void buffChain(Args args) {
-        args.set(7, 1.0F);
-    }
-
-    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 2))
-    private static void buffIron(Args args) {
-        args.set(7, 2.0F);
+    private static void modifyLeather(Args args) {
+        args.set(7, 0.5F); // add toughness
     }
 
     @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 3))
-    private static void buffGold(Args args) {
+    private static void modifyGold(Args args) {
         args.set(7, 1.0F);
         args.set(8, 0.1F); // kb resist
     }
-
-    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 4))
-    private static void buffDiamond(Args args) {
-        args.set(7, 3.0F); // same as vanilla netherite
+    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 1))
+    private static void modifyChain(Args args) {
+        args.set(7, 1.5F);
     }
 
+    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 2))
+    private static void modifyIron(Args args) {
+        args.set(7, 1.0F);
+    }
+
+    /*@ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 4))
+    private static void modifyDiamond(Args args) {
+        args.set(7, 3.0F); // same as vanilla netherite
+    }*/
+
     @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 5))
-    private static void buffTurtle(Args args) {
+    private static void modifyTurtle(Args args) {
         args.set(7, 2.0F);
         args.set(4, (EnumMap) Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
             map.put(ArmorItem.Type.BOOTS, 3);
@@ -73,14 +72,14 @@ public class ArmorMaterialsMixin {
     }
 
     @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "net/minecraft/item/ArmorMaterials.<init> (Ljava/lang/String;ILjava/lang/String;ILjava/util/EnumMap;ILnet/minecraft/sound/SoundEvent;FFLjava/util/function/Supplier;)V", ordinal = 6))
-    private static void nerfNetherite(Args args) {
-        args.set(7, 2.0F);
-        args.set(8, 0.0F);
+    private static void modifyNetherite(Args args) {
+        //args.set(7, 2.0F);
+        args.set(8, 0.05F);
         args.set(4, (EnumMap) Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
             map.put(ArmorItem.Type.BOOTS, 2);
-            map.put(ArmorItem.Type.LEGGINGS, 5);
-            map.put(ArmorItem.Type.CHESTPLATE, 6);
+            map.put(ArmorItem.Type.LEGGINGS, 4);
+            map.put(ArmorItem.Type.CHESTPLATE, 5);
             map.put(ArmorItem.Type.HELMET, 2);
-        })); // iron protection values
+        })); // two less on chest and legs than iron
     }
 }

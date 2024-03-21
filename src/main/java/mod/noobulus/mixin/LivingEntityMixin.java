@@ -1,13 +1,10 @@
 package mod.noobulus.mixin;
 
-import mod.noobulus.VanillylTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
@@ -29,10 +26,10 @@ public abstract class LivingEntityMixin extends Entity {
         return (instance.getAmplifier() + 1) * 2; // scale twice as fast as usual
     }
 
-    @ModifyVariable(method = "modifyAppliedDamage", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getProtectionAmount(Ljava/lang/Iterable;Lnet/minecraft/entity/damage/DamageSource;)I"), argsOnly = true)
+    /*@ModifyVariable(method = "modifyAppliedDamage", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/enchantment/EnchantmentHelper;getProtectionAmount(Ljava/lang/Iterable;Lnet/minecraft/entity/damage/DamageSource;)I"), argsOnly = true)
     private float armorSpecialDamageResists(float value, DamageSource source) {
         Iterable<ItemStack> equipment = ((LivingEntity) (Object) this).getArmorItems();
-        float percentDamageReduction = 100;
+        float percentDamageReduction = 0;
         if (source.getSource() != null) {
             return value;
         }
@@ -52,5 +49,15 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
         return value * (1 - (percentDamageReduction / 100));
+    }*/
+
+    @ModifyArg(method = "applyArmorToDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V"), index = 1)
+    private float modifyArmorDamageAmount(float amount) {
+        float toughnessReduction = (float) (((LivingEntity) (Object) this).getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS) * 0.5);
+        if (this.random.nextFloat() > amount / toughnessReduction) {
+            return 1.0F;
+        } else {
+            return (amount - toughnessReduction);
+        }
     }
 }
