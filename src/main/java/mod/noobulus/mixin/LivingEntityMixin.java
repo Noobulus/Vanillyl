@@ -4,15 +4,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = LivingEntity.class, priority = 800)
 public abstract class LivingEntityMixin extends Entity {
 
-    public LivingEntityMixin(EntityType<?> type, World world) {
+    @Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+
+    protected LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
@@ -54,10 +60,17 @@ public abstract class LivingEntityMixin extends Entity {
     @ModifyArg(method = "applyArmorToDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damageArmor(Lnet/minecraft/entity/damage/DamageSource;F)V"), index = 1)
     private float modifyArmorDamageAmount(float amount) {
         float toughnessReduction = (float) (((LivingEntity) (Object) this).getAttributeValue(EntityAttributes.GENERIC_ARMOR_TOUGHNESS) * 0.5);
-        if (this.random.nextFloat() > amount / toughnessReduction) {
+        if (((LivingEntity) (Object) this).random.nextFloat() > amount / toughnessReduction) {
             return 1.0F;
         } else {
             return (amount - toughnessReduction);
+        }
+    }
+
+    @Inject(method = "setAbsorptionAmount(F)V", at = @At(value = "TAIL"))
+    private void absorptionDissappearsWhenHeartsDissapear(float amount, CallbackInfo ci) {
+        if (amount == 0) {
+            this.removeStatusEffect(StatusEffects.ABSORPTION);
         }
     }
 }

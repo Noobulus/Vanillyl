@@ -64,4 +64,9 @@ public abstract class RabbitEntityMixin extends AnimalEntity {
     private Goal rabbitsTemptedByTag(Goal goal) {
         return new TemptGoal(this, 1.25, Ingredient.fromTag(VanillylTags.GENERIC_BREEDING_ITEMS), false);
     }
+
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void buffStepHeight(EntityType entityType, World world, CallbackInfo ci) {
+        ((RabbitEntity) (Object) this).setStepHeight(1.0F);
+    }
 }

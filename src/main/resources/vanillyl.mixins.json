@@ -10,21 +10,27 @@
     "BrewingStandBlockEntityMixin",
     "BrewingStandScreenHandlerMixin",
     "ChickenEntityMixin",
-    "CookingPotRecipeSerializerMixin",
     "CowEntityMixin",
     "DamageUtilMixin",
     "FireworkRocketRecipeMixin",
     "FireworkStarRecipeMixin",
+    "HorseArmorItemMixin",
+    "HorseEntityMixin",
     "ItemMixin",
     "LivingEntityMixin",
     "LlamaEntityMixin",
     "ParrotEntityMixin",
     "PigEntityMixin",
+    "PlayerEntityMixin",
+    "PotionsMixin",
     "RabbitEntityMixin",
     "SheepEntityMixin",
     "ToolMaterialsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  },
+  "client": [
+    "RabbitEntityRendererMixin"
+  ]
 }
