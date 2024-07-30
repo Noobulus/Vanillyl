@@ -5,3 +5,8 @@ accessible field net/minecraft/entity/Entity random Lnet/minecraft/util/math/ran
 accessible method net/minecraft/entity/passive/AbstractHorseEntity playEatingAnimation ()V
 accessible method net/minecraft/entity/passive/LlamaEntity getEatSound ()Lnet/minecraft/sound/SoundEvent;
 accessible field net/minecraft/block/entity/BrewingStandBlockEntity inventory Lnet/minecraft/util/collection/DefaultedList;
+accessible method net/minecraft/entity/passive/OcelotEntity setTrusting (Z)V
+accessible method net/minecraft/entity/passive/OcelotEntity isTrusting ()Z
+accessible method net/minecraft/entity/passive/OcelotEntity showEmoteParticle (Z)V
+accessible method net/minecraft/entity/passive/AnimalEntity eat (Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/item/ItemStack;)V
+accessible field net/minecraft/entity/passive/RabbitEntity$FleeGoal rabbit Lnet/minecraft/entity/passive/RabbitEntity;

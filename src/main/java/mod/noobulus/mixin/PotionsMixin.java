@@ -30,7 +30,7 @@ public class PotionsMixin {
 
     @ModifyConstant(method = "<clinit>", constant = @Constant(intValue = 450))
     private static int modifyStrongRegenDuration(int constant) {
-        return 1800; // coincidentally also the base potion duration
+        return 1800; // coincidentally also the strong potion duration
     }
 
     @ModifyConstant(method = "<clinit>", constant = @Constant(intValue = 432))
@@ -40,16 +40,16 @@ public class PotionsMixin {
 
     @ModifyConstant(method = "<clinit>", constant = @Constant(intValue = 4800))
     private static int modifyLongSlownessDuration(int constant) {
-        return 7200;
+        return 9600;
     }
 
     @ModifyConstant(method = "<clinit>", constant = @Constant(intValue = 400)) // slowness too
     private static int modifyTurtleMasterPotionDuration(int constant) {
-        return 1600;
+        return 1800;
     }
 
     @ModifyConstant(method = "<clinit>", constant = @Constant(intValue = 800))
-    private static int modifyStrongTurtleMasterPotionDuration(int constant) {
-        return 1200;
+    private static int modifyLongTurtleMasterPotionDuration(int constant) {
+        return 3600;
     }
 }

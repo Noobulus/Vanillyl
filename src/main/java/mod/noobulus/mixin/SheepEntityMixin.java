@@ -24,6 +24,6 @@ public abstract class SheepEntityMixin extends AnimalEntity {
 
     @ModifyArg(method = "initGoals()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/goal/GoalSelector;add(ILnet/minecraft/entity/ai/goal/Goal;)V", ordinal = 3), index = 1)
     private Goal sheepTemptedByTag(Goal goal) {
-        return new TemptGoal(this, 1.25, Ingredient.fromTag(VanillylTags.GENERIC_BREEDING_ITEMS), false);
+        return new TemptGoal(this, 1.1, Ingredient.fromTag(VanillylTags.GENERIC_BREEDING_ITEMS), false);
     }
 }

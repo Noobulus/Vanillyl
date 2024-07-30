@@ -19,13 +19,15 @@
     "ItemMixin",
     "LivingEntityMixin",
     "LlamaEntityMixin",
+    "OcelotEntityMixin",
     "ParrotEntityMixin",
     "PigEntityMixin",
     "PlayerEntityMixin",
     "PotionsMixin",
     "RabbitEntityMixin",
     "SheepEntityMixin",
-    "ToolMaterialsMixin"
+    "ToolMaterialsMixin",
+    "esotericdistillation.DistillationsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
